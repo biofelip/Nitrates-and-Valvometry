@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(pwr)
 library(cowplot)
 library(ggplot2)
+library(tidyr)
 ```
 
 ## Power analysis for the binomial test
@@ -21,6 +22,8 @@ errores=data.frame("Truth table"=c("Tests accepts Ho", "Test rejects Ho"), "Ho i
 knitr::kable(errores)
 
 ```
+
+
 in all cases I can try to minimze  the $\beta$ by making changes to the null hypothesis, so the null hypothesis will be three, in all cases the $P$ refers to the **the proportion of correctly detected movemente (or not movement in the case of negatives) in the videos**:
 $$H_{0s}:P=0.5 \\ H_{1s}:=P>0.5 $$
 $$H_{0sv}:P=0.5 \\ H_{1sv}:=P>0.5 $$
