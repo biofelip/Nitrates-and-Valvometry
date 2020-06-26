@@ -1,0 +1,21 @@
+---
+title: "Power analysis for first part"
+author: "Felipe"
+date: "26/06/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Power analysis for the binomial test
+In this section I will perform a power analysis for the binomial test that I want to run for testing the efficiency of my Image based detection method, the idea is that I will have three sets of videos: 1)Videos where no detectable change is visible, also called negatives 2) Videos where only syphon changes are visible 3) videos where both syphon and valve movement are observed, this category might be merged with the previous one, becasue it is likely that I cannot find enough videos where I am sure that  there is no visible change in the movement of the valves with movement of the syphon. 
+
+The power analysis will be based on reducing the Type 1 error rate in all instances, excepto for the negatives that will be to reduce the Type II error rate, for my own reference here is a table explaining the error rates. 
+```{r, echo=FALSE}
+errores=data.frame("Truth table"=c("Tests accpest Ho", "Teste rejects Ho"), "Ho is TRUE"=c("True accept (1-alfa)", "T1 error (alfa) :false reject"), "Ho is False"=c("T2 error (beta): false accept", "Power: true reject (1-beta)"))
+knitr::kable(errores)
+
+```
+

@@ -1,0 +1,47 @@
+---
+title: "Power analysis for first part"
+author: "Felipe"
+date: "26/06/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pwr)
+library(cowplot)
+library(ggplot2)
+```
+
+## Power analysis for the binomial test
+In this section I will perform a power analysis for the binomial test that I want to run for testing the efficiency of my Image based detection method, the idea is that I will have three sets of videos: 1)Videos where no detectable change is visible, also called negatives 2) Videos where only syphon changes are visible 3) videos where both syphon and valve movement are observed, this category might be merged with the previous one, becasue it is likely that I cannot find enough videos where I am sure that  there is no visible change in the movement of the valves with movement of the syphon. 
+
+The power analysis will be based on reducing the Type 1 error rate in all instances, except for the negatives that will be to reduce the Type II error rate, for my own reference here is a table explaining the error rates. 
+```{r, echo=FALSE}
+errores=data.frame("Truth table"=c("Tests accepts Ho", "Test rejects Ho"), "Ho is TRUE"=c("True accept (1-alfa)", "T1 error (alfa) :false reject"), "Ho is False"=c("T2 error (beta): false accept", "Power: true reject (1-beta)"))
+knitr::kable(errores)
+
+```
+in all cases I can try to minimze  the $\beta$ by making changes to the null hypothesis, so the null hypothesis will be three, in all cases the $P$ refers to the **the proportion of correctly detected movemente (or not movement in the case of negatives) in the videos**:
+$$H_{0s}:P=0.5 \\ H_{1s}:=P>0.5 $$
+$$H_{0sv}:P=0.5 \\ H_{1sv}:=P>0.5 $$
+$$H_{0n}:P=0.5\\ H_{1n}:=P>0.5 $$
+I will  calculate the sample size for each one of the cases above however since they are all similar I will use just one command. I will use the effect size calculated from our expected value of detection (above 90%) vs the value expected value of detection if the method does not works (random=50%), we will calculate this for two powers of 90 and 80 to see the different sample sizes recommended. For this I will use the package "pwr", and the following documentation <https://cran.r-project.org/web/packages/pwr/vignettes/pwr-vignette.html>.
+```{r}
+##  80% power
+p80=pwr.p.test(h = ES.h(p1 = 0.9, p2 = 0.50),
+           power=0.8,
+           sig.level = 0.05, 
+           alternative = "greater")
+p80
+##90% power
+p90=pwr.p.test(h = ES.h(p1 = 0.9, p2 = 0.50),
+           power = 0.9,
+           sig.level = 0.05)
+p90
+p90gg=plot(p90)+ggtitle("Power 90%")+xlim(0,20)
+p80gg=plot(p80)+ggtitle("Power 80%")+xlim(0,20)
+plot_grid(p80gg, p90gg)
+
+
+```
+The graphs are awfull (need to revise the axis and numeration but well), they show that for the expected effect size, and with a power of 90%, meaning that 90% of the times that the test rejects the null hypothesis it is actually false is 12.21 I will do 13 videos of each kind for a total of 39 videos. I will not concentrate on differente effect sizes becasue lower than that the methos will no ve very reliable.
