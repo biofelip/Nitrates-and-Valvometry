@@ -24,7 +24,7 @@ knitr::kable(errores)
 ```
 
 
-in all cases I can try to minimze  the $\beta$ by making changes to the null hypothesis, so the null hypothesis will be three, in all cases the $P$ refers to the **the proportion of correctly detected movemente (or not movement in the case of negatives) in the videos**:
+In all cases I can try to minimze  the $\beta$ by making changes to the null hypothesis, so the null hypothesis will be three, in all cases the $P$ refers to the **the proportion of correctly detected movemente (or not movement in the case of negatives) in the videos**:
 $$H_{0s}:P=0.5 \\ H_{1s}:=P>0.5 $$
 $$H_{0sv}:P=0.5 \\ H_{1sv}:=P>0.5 $$
 $$H_{0n}:P=0.5\\ H_{1n}:=P>0.5 $$
@@ -47,4 +47,6 @@ plot_grid(p80gg, p90gg)
 
 
 ```
+
+
 The graphs are awfull (need to revise the axis and numeration but well), they show that for the expected effect size, and with a power of 90%, meaning that 90% of the times that the test rejects the null hypothesis it is actually false is 12.21 I will do 13 videos of each kind for a total of 39 videos. I will not concentrate on differente effect sizes becasue lower than that the methos will no ve very reliable.
