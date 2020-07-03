@@ -74,14 +74,6 @@ for s in range(len(mussel1)):
     plt.plot(areasyperimetros[rango,1])
     plt.plot(areasyperimetros[rango,1], 'ro')
     plt.axvline(x=s)
-    plt.title('Perimetro cerrado')
-    plt.subplot(236)
-    plt.plot(areasyperimetros[rango,2])
-    plt.plot(areasyperimetros[rango,2], 'ro')
-    plt.axvline(x=s)
-    plt.title('Perimetro abierto')
-    plt.savefig(name)
-    plt.close()
 
 
 
