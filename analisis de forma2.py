@@ -11,9 +11,11 @@ from  matplotlib import pyplot as plt
 import glob
 import pandas as pd
 ##seleccionando directiorio en este momento no es interactivo
-path =r"C:\Users\felip\Documents\PhD\Douda\experiments joanna\Second approach\Pruebabinomial"
+path =r"C:\Users\felip\Documents\PhD\Douda\experiments joanna\Second approach\analisis  videos completo\scaled"
 os.chdir(path)
-filenames=glob.glob('*.mp4')
+filenames1=glob.glob('*.mp4') 
+filenames2=glob.glob('*.avi')
+filenames=filenames1+filenames2
 rs=[]
 for i in filenames:
     ## leyendo videos y seleccionadno ROI
