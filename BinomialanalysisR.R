@@ -20,7 +20,7 @@ Hu2=unlist(lapply(dataframes, function (x) sd(x$Hu.moments2, na.rm = TRUE)))
 Hu3=unlist(lapply(dataframes, function (x) sd(x$Hu.moments3, na.rm = TRUE)))
 
 
-for ( i in 1:length(dataframes)){plot(dataframes[[i]]$Hu.moments1, main =plotnames[i], type = "l" )}
+for ( i in 1:length(dataframes)){plot(dataframes[[i]]$Area, main =plotnames[i], type = "l" )}
 
 plot(x=dataframes[[i]]$X, y=dataframes[[i]]$Hu.moments, main =filestoread[i], type="l")
 
@@ -57,7 +57,7 @@ ploteoH=ggplot(df.summary, aes(x=1:48, y=ymeanH)) +
                   color = "blue", size=1.5)+annotate("text", x=c(11,37), y=4, label=c("Negative", "Positive"))+
   labs(x="Videos", y="Mean ± SD")+theme_classic()+ggtitle("Hu moments")
 
-seqplots=function(x){for ( i in 1:length(x$Hu.moments1)){
+seqplots=function(x){for ( i in 1:length(x$Area)){
                                   jpeg(paste("plotfin",i,".jpg",sep = "" ))
                                   par(mfrow=c(2,2))
                                   plot(x=x$Area, main="Area", type = "b")
@@ -69,7 +69,7 @@ seqplots=function(x){for ( i in 1:length(x$Hu.moments1)){
                                   plot(x=x$Hu.moments3, main="Hu3", type = "b")
                                   abline(v=i, col="red")
                                   dev.off()}}
-seqplots(dataframes[[1]])
+seqplots(dataframes[["resultadosSYPHON5-T2M2.mp4.csv"]])
 write.table(filestoread, 'clipboard')
 
 
